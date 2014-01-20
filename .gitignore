@@ -1,9 +1,11 @@
 /target
 /classes
 /checkouts
+/resources/public/javascript
 pom.xml
 pom.xml.asc
 *.jar
 *.class
 /.lein-*
 /.nrepl-port
+/src/crossover

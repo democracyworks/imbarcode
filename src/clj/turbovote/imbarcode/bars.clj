@@ -1,5 +1,5 @@
 (ns turbovote.imbarcode.bars
-  (:require [clojure.string :as s :only [join]]))
+  (:require [clojure.string :as s]))
 
 (def A 0)
 (def B 1)

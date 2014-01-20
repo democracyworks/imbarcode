@@ -1,5 +1,6 @@
 (ns turbovote.imbarcode.crc
-  (:require [clojure.string :as s :only [join]]))
+  (:require [clojure.string :as s]
+            [turbovote.big-integer :as bi]))
 
 (defn pad [data n]
   (concat data (repeat n 0)))
@@ -10,10 +11,10 @@
 (defn int->binvector [i]
   (loop [v '()
          n i]
-    (if (zero? n)
+    (if (bi/zero? n)
       v
-      (recur (conj v (int (rem n 2)))
-             (quot n 2)))))
+      (recur (conj v (bi/int (bi/rem n 2)))
+             (bi/quot n 2)))))
 
 (defn xor [data p]
   (concat (map bit-xor (take (count p) data) p)
@@ -30,6 +31,7 @@
             :else
             (recur (xor result poly-div))))))
 
+
 (defn IMb-fcs
   "Returns the 11 bit IMb frame check sequence
    represented as a vector of 0s and 1s.
@@ -38,4 +40,4 @@
   [binary-data]
   (let [fcs-11 (crc (drop 2 (front-pad-to (int->binvector binary-data) 104))
                     (int->binvector 0xf35))]
-    (Integer/parseInt (s/join fcs-11) 2)))
+    (bi/from-string (s/join fcs-11) 2)))
