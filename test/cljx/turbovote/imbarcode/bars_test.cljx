@@ -1,6 +1,10 @@
 (ns turbovote.imbarcode.bars-test
-  (:require [clojure.test :refer :all]
-            [turbovote.imbarcode.bars :refer :all]))
+  #+clj (:require [clojure.test :refer :all]
+                  [turbovote.imbarcode.bars :refer :all])
+  #+cljs (:require [cemerick.cljs.test :as t]
+                   [turbovote.imbarcode.bars :refer [bars]])
+  #+cljs (:require-macros [cemerick.cljs.test
+                           :refer (is deftest with-test run-tests testing test-var)]))
 
 (deftest bars-test
   (let [test-cases

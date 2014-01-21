@@ -1,6 +1,11 @@
 (ns turbovote.imbarcode.characters-test
-  (:require [clojure.test :refer :all]
-            [turbovote.imbarcode.characters :refer :all]))
+  #+clj (:require [clojure.test :refer :all]
+                  [turbovote.imbarcode.characters :refer :all])
+  #+cljs (:require [cemerick.cljs.test :as t]
+                   [turbovote.imbarcode.characters :refer [codewords->characters-base
+                                                           adjust-characters]])
+  #+cljs (:require-macros [cemerick.cljs.test
+                           :refer (is deftest with-test run-tests testing test-var)]))
 
 (deftest codewords->characters-base-test
   (let [test-cases

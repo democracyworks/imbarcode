@@ -5,8 +5,8 @@
   (re-matches #"\A\d*\z" string))
 
 (defn from-string
-  ([string] (Integer/parseInt string))
-  ([string radix] (Integer/parseInt string radix)))
+  ([string] (bigint (BigInteger. string)))
+  ([string radix] (bigint (BigInteger. string radix))))
 
 (def + +')
 (def * *')

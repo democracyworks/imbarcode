@@ -40,4 +40,4 @@
   [binary-data]
   (let [fcs-11 (crc (drop 2 (front-pad-to (int->binvector binary-data) 104))
                     (int->binvector 0xf35))]
-    (bi/from-string (s/join fcs-11) 2)))
+    (bi/int (bi/from-string (s/join fcs-11) 2))))
