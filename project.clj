@@ -30,7 +30,8 @@
                                        "target/generated/test/cljs"]
                         :compiler {:output-to "target/cljs/testable.js"
                                    :output-dir "target/cljs/"
-                                   :optimizations :whitespace}}]
+                                   :optimizations :whitespace
+                                   :pretty-print true}}]
               :test-commands {"unit-tests" ["phantomjs" :runner
                                             "target/cljs/testable.js"]}}
   :cljx {:builds [{:source-paths ["test/cljx"]
