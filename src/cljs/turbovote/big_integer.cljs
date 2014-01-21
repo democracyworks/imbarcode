@@ -1,4 +1,7 @@
 (ns turbovote.big-integer
+  "Wraps goog.math.Integer operations to provide
+   a common, Clojure-esque interface for dealing with arbitrary
+   precision integers in ClojureScript."
   (:import goog.math.Integer)
   (:refer-clojure :exclude [+ * inc quot rem int zero?]))
 
