@@ -1,4 +1,6 @@
 (ns turbovote.imbarcode.bars
+  "Handles conversion from characters to the Intelligent Mail Barcode.
+   See section 3.2.6 of the IMb spec."
   (:require [clojure.string :as s]))
 
 (def A 0)

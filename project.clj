@@ -12,18 +12,22 @@
               :builds [{:id "dev"
                         :source-paths ["src/cljs" "src/crossover"]
                         :compiler {:output-to "resources/public/javascript/main-dev.js"
-                                   :output-dir "resources/public/javascript/"
+                                   :output-dir "resources/public/javascript/dev/"
                                    :optimizations :none
                                    :pretty-print true
                                    :source-map true}}
+                       {:id "prod"
+                        :source-paths ["src/cljs" "src/crossover"]
+                        :compiler {:output-to "resources/public/javascript/main.js"
+                                   :output-dir "resources/public/javascript/prod/"
+                                   :optimizations :advanced}}
                        {:id "test"
                         :source-paths ["src/cljs"
                                        "src/crossover"
                                        "target/generated/test/cljs"]
                         :compiler {:output-to "target/cljs/testable.js"
                                    :output-dir "target/cljs/"
-                                   :optimizations :whitespace
-                                   :pretty-print true}}]
+                                   :optimizations :whitespace}}]
               :test-commands {"unit-tests" ["phantomjs" :runner
                                             "target/cljs/testable.js"]}}
   :cljx {:builds [{:source-paths ["test/cljx"]

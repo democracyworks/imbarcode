@@ -1,14 +1,6 @@
 <html>
-  <style>
-    #canvas {
-    width: 100%
-    height: 100%;
-    }
-  </style>
-
-  <script src="javascript/goog/base.js"></script>
-  <script src="javascript/main-dev.js"></script>
-  <script>goog.require('turbovote.imbarcode');</script>
-
-
+  <script type="text/javascript" src="javascript/main.js"></script>
+  <script>
+    alert(turbovote.imbarcode.encode("00", "040", "123456", "123456789", "12345"));
+  </script>
 </html>

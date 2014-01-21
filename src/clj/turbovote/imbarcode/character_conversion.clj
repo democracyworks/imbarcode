@@ -1,4 +1,6 @@
-(ns turbovote.imbarcode.character-conversion)
+(ns turbovote.imbarcode.character-conversion
+  "Mapping from codewords to characters.
+   See Tables I and II in Appendix E in the IMb spec.")
 
 (def codeword->character
   [31, 7936,   47, 7808,   55, 7552,   59, 7040,   61, 6016,
