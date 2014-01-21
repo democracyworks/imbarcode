@@ -1,4 +1,4 @@
-# imbarcode
+# turbovote.imbarcode
 
 A Clojure/Clojurescript library designed to generate USPS Intelligent Mail Barcodes.
 The core functionality is in turbovote.imbarcode/encode. Given the necessary parameters,
@@ -12,9 +12,9 @@ and other useful resources.
 ## Installation
 
 `imbarcode` is available as a Maven artifact from
-[Clojars](http://clojars.org/imbarcode):
+[Clojars](http://clojars.org/turbovote.imbarcode):
 ```clojure
-[imbarcode "0.1.1"]
+[turbovote.imbarcode "0.1.1"]
 ```
 
 ## Usage
@@ -52,6 +52,7 @@ To run just the Clojure tests:
     $ lein test
 
 To run just the Clojurescript tests:
+
     $ lein cljsbuild test
 
 Note that we make use of cljx so you may need to manually run `lein cljx` before
