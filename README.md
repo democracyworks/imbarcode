@@ -4,7 +4,7 @@ A Clojure/ClojureScript library designed to generate USPS Intelligent Mail Barco
 The core functionality is in turbovote.imbarcode/encode. Given the necessary parameters,
 this will output a string representing the extenders in the computed barcode.
 
-See https://ribbs.usps.gov/index.cfm?page=intellmailmailpieces for a complete specification
+See https://ribbs.usps.gov/onecodesolution for a complete specification
 of USPS Intelligent Mail Barcodes, a font file to properly display your encoded barcode,
 and other useful resources.
 
