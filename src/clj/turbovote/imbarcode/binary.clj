@@ -1,4 +1,6 @@
 (ns turbovote.imbarcode.binary
+  "Handles conversion of data fields into binary data.
+   See section 3.2.1 of the IMb spec."
   (:require [turbovote.big-integer :as bi]))
 
 (defn str->ints [string]

@@ -1,4 +1,6 @@
 (ns turbovote.imbarcode.codewords
+  "Handles conversion from binary data to codewords.
+   See section 3.2.3 and 3.2.4 of the IMb spec."
   (:require [turbovote.big-integer :as bi]))
 
 (defn data->codewords-base [data]

@@ -1,4 +1,6 @@
 (ns turbovote.imbarcode.characters
+  "Handles conversion from codewords to characters.
+   See section 3.2.5 of the IMb spec."
   (:require [turbovote.imbarcode.character-conversion :refer [codeword->character]]))
 
 (defn codewords->characters-base [codewords]

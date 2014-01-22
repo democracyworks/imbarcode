@@ -1,4 +1,6 @@
 (ns turbovote.imbarcode.crc
+  "Handles generation of 11 bit CRC on binary data.
+   See section 3.2.2 of the IMb spec."
   (:require [clojure.string :as s]
             [turbovote.big-integer :as bi]))
 

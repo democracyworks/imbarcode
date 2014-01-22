@@ -1,5 +1,8 @@
-(defproject turbovote.imbarcode "0.1.0-SNAPSHOT"
+(defproject turbovote.imbarcode "0.1.0"
   :description "Generate USPS Intelligent Mail Barcodes"
+  :url "https://github.com/turbovote/imbarcode"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2138"]]
   :plugins [[lein-cljsbuild "1.0.1"]
@@ -12,10 +15,15 @@
               :builds [{:id "dev"
                         :source-paths ["src/cljs" "src/crossover"]
                         :compiler {:output-to "resources/public/javascript/main-dev.js"
-                                   :output-dir "resources/public/javascript/"
+                                   :output-dir "resources/public/javascript/dev/"
                                    :optimizations :none
                                    :pretty-print true
                                    :source-map true}}
+                       {:id "prod"
+                        :source-paths ["src/cljs" "src/crossover"]
+                        :compiler {:output-to "resources/public/javascript/main.js"
+                                   :output-dir "resources/public/javascript/prod/"
+                                   :optimizations :advanced}}
                        {:id "test"
                         :source-paths ["src/cljs"
                                        "src/crossover"
