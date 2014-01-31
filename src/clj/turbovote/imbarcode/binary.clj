@@ -21,12 +21,21 @@
       (bi/* 10)
       (bi/+ digit)))
 
-(defn binary-encode [barcode service mailer serial-number routing]
+(defn binary-encode-collapsed-fields
+  [front-fields routing]
   (let [binary (convert-routing-code routing)
-        tracking-code-digits (str->ints (str barcode service mailer serial-number))
+        tracking-code-digits (str->ints front-fields)
         with-barcode-type (-> binary
                               (bi/* 10)
                               (bi/+ (first tracking-code-digits))
                               (bi/* 5)
                               (bi/+ (second tracking-code-digits)))]
     (reduce binary-attach-digit with-barcode-type (drop 2 tracking-code-digits))))
+
+(defn binary-encode
+  ([barcode service customer-number routing]
+     (binary-encode-collapsed-fields (str barcode service customer-number)
+                                     routing))
+  ([barcode service mailer serial-number routing]
+     (binary-encode-collapsed-fields (str barcode service mailer serial-number)
+                                     routing)))

@@ -38,6 +38,8 @@ Require it in your application:
 ```clojure
 user=> (imb/encode "00" "040" "123456789" "123456" "123456789")
 "ADFFDTDATDTDDDTTDTTFTFFAFTATFATATDATDDDDDFDAFAFFATTADDTATDDDAFFFA"
+user=> (imb/encode "00" "050" "999888777666555" "012345678")
+"FAADADDDTAFTAFDFFTDAADADTAFTTDATAAFTAFTTFAATAAFTFATDTFATFFTATTAAF"
 ```
 
 See ```resources/public/dev-index.html``` and ```resources/public/index.html``` for examples
