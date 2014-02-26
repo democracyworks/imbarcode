@@ -14,7 +14,7 @@ and other useful resources.
 `imbarcode` is available as a Maven artifact from
 [Clojars](http://clojars.org/turbovote.imbarcode):
 ```clojure
-[turbovote.imbarcode "0.1.0"]
+[turbovote.imbarcode "0.1.1"]
 ```
 
 ## Usage
