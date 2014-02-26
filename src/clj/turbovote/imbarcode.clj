@@ -6,12 +6,17 @@
             [turbovote.imbarcode.characters :refer [codewords->characters]]
             [turbovote.imbarcode.bars :refer [bars]]))
 
-(defn encode-binary-data [binary-data]
+(defn- encode-binary-data [binary-data]
   (let [fcs (IMb-fcs binary-data)]
     (-> binary-data
         (data->codewords fcs)
         (codewords->characters fcs)
         bars)))
+
+(def ^:export barcode-id:default "00")
+
+(def ^:export service-type-id:destination "040")
+(def ^:export service-type-id:origin "050")
 
 (defn ^:export encode
   "Generate the texual representation of an encoded USPS IMbarcode

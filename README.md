@@ -36,9 +36,11 @@ Require it in your application:
 ```
 
 ```clojure
-user=> (imb/encode "00" "040" "123456789" "123456" "123456789")
+user=> ; Destination tracing
+user=> (imb/encode imb/barcode-id:default imb/service-type-id:destination "123456789" "123456" "123456789")
 "ADFFDTDATDTDDDTTDTTFTFFAFTATFATATDATDDDDDFDAFAFFATTADDTATDDDAFFFA"
-user=> (imb/encode "00" "050" "999888777666555" "012345678")
+user=> ; Origin tracing
+user=> (imb/encode imb/barcode-id:default imb/service-type-id:origin "999888777666555" "012345678")
 "FAADADDDTAFTAFDFFTDAADADTAFTTDATAAFTAFTTFAATAAFTFATDTFATFFTATTAAF"
 ```
 
