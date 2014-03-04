@@ -29,8 +29,21 @@
    section 3.1.3 of the IMb spec for a detailed description of the
    parameters."
   ([barcode service customer-number routing]
+     {:pre [(every? string? [barcode service customer-number routing])
+            (= (count barcode) 2)
+            (= (count service) 3)
+            (= (count customer-number) 15)
+            (#{0 5 9 11} (count routing))]}
      (encode-binary-data
       (binary-encode barcode service customer-number routing)))
   ([barcode service mailer serial-number routing]
+     {:pre [(every? string? [barcode service mailer serial-number routing])
+            (= (count barcode) 2)
+            (= (count service) 3)
+            (or (and (= (count mailer) 6)
+                     (= (count serial-number) 9))
+                (and (= (count mailer) 9)
+                     (= (count serial-number) 6)))
+            (#{0 5 9 11} (count routing))]}
      (encode-binary-data
       (binary-encode barcode service mailer serial-number routing))))
