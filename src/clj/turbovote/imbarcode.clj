@@ -47,3 +47,23 @@
             (#{0 5 9 11} (count routing))]}
      (encode-binary-data
       (binary-encode barcode service mailer serial-number routing))))
+
+(def origin-service-types #{"050" "051" "052"})
+
+(defn ^:export split-structure-digits
+  "Split IMbarcode structure digits into their constituent parts"
+  [imb]
+  (let [barcode (subs imb 0 2)
+        service (subs imb 2 5)
+        routing (subs imb 20)
+        response {:barcode barcode
+                  :service service
+                  :routing routing}]
+    (if (origin-service-types service)
+      (assoc response :customer-number (subs imb 5 20))
+      (let [mailer-and-serial (subs imb 5 20)]
+        (assoc response
+          :6-digit-mailer {:mailer (subs mailer-and-serial 0 6)
+                           :serial-number (subs mailer-and-serial 6)}
+          :9-digit-mailer {:mailer (subs mailer-and-serial 0 9)
+                           :serial-number (subs mailer-and-serial 9)})))))
