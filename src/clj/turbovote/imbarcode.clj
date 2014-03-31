@@ -63,7 +63,7 @@
       (assoc response :customer-number (subs imb 5 20))
       (let [mailer-and-serial (subs imb 5 20)]
         (assoc response
-          :6-digit-mailer {:mailer (subs mailer-and-serial 0 6)
+          :6-digit-mailer {:mailer-id (subs mailer-and-serial 0 6)
                            :serial-number (subs mailer-and-serial 6)}
-          :9-digit-mailer {:mailer (subs mailer-and-serial 0 9)
+          :9-digit-mailer {:mailer-id (subs mailer-and-serial 0 9)
                            :serial-number (subs mailer-and-serial 9)})))))
