@@ -42,7 +42,7 @@
           result (split-structure-digits structure-digits)]
       (is (= barcode (:barcode result)))
       (is (= service (:service result)))
-      (is (= mailer (get-in result [:6-digit-mailer :mailer])))
+      (is (= mailer (get-in result [:6-digit-mailer :mailer-id])))
       (is (= serial (get-in result [:6-digit-mailer :serial-number])))
       (is (= routing (:routing result)))))
   (testing "origin"
