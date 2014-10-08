@@ -1,4 +1,4 @@
-(defproject turbovote.imbarcode "0.1.4-SNAPSHOT"
+(defproject turbovote.imbarcode "0.1.4"
   :description "Generate USPS Intelligent Mail Barcodes"
   :url "https://github.com/turbovote/imbarcode"
   :license {:name "Eclipse Public License"
