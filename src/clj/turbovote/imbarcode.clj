@@ -50,7 +50,7 @@
    parameters."
   ([imbarcode]
      {:pre [(string? imbarcode)
-            (not (nil? (re-find #"\A\d*\z" imbarcode)))
+            (not (nil? (re-find #"^\d*$" imbarcode)))
             (<= 20 (count imbarcode))
             (>= 31 (count imbarcode))]}
      (let [{:keys [barcode service routing] :as imb-data}
