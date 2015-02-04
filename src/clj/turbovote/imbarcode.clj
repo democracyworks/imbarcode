@@ -40,21 +40,22 @@
 
 (defn ^:export encode
   "Generate the texual representation of an encoded USPS IMbarcode
-   from the data provided. For origin tracing, pass in a barcode id,
-   service type id, customer number, and routing number.  For
-   destination tracing, pass in a barcode id, service type id, mailer
-   id, serial number, and routing number.
+   from the data provided. You can pass in the full numerical
+   sequence if you have that available. For origin tracing, pass in
+   a barcode id, service type id, customer number, and routing
+   number.  For destination tracing, pass in a barcode id, service
+   type id, mailer id, serial number, and routing number.
 
    The generated string will consist of the characters [ADFT].  See
    section 3.1.3 of the IMb spec for a detailed description of the
    parameters."
-  ([imbarcode]
-     {:pre [(string? imbarcode)
-            (not (nil? (re-find #"^\d*$" imbarcode)))
-            (<= 20 (count imbarcode))
-            (>= 31 (count imbarcode))]}
+  ([structure-digits]
+     {:pre [(string? structure-digits)
+            (not (nil? (re-find #"^\d*$" structure-digits)))
+            (<= 20 (count structure-digits))
+            (>= 31 (count structure-digits))]}
      (let [{:keys [barcode service routing] :as imb-data}
-            (split-structure-digits imbarcode)]
+            (split-structure-digits structure-digits)]
        (if (contains? origin-service-types service)
          (encode barcode
                  service
