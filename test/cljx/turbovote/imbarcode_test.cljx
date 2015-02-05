@@ -21,7 +21,8 @@
            ["01" "234" "567094" "987654321" "01234567891"]
            "AADTFFDFTDADTAADAATFDTDDAAADDTDTTDAFADADDDTFFFDDTTTADFAAADFTDAADA"}]
       (doseq [[inputs output] test-cases]
-        (is (= (apply encode inputs) output)))))
+        (is (= (apply encode inputs) output))
+        (is (= (encode (apply str inputs)) output)))))
   (testing "origin"
     (let [test-cases
           {["00" "050" "010203123456789" "012345678"]
@@ -29,7 +30,8 @@
            [barcode-id:default service-type-id:origin "999888777666555" "012345678"]
            "FAADADDDTAFTAFDFFTDAADADTAFTTDATAAFTAFTTFAATAAFTFATDTFATFFTATTAAF"}]
       (doseq [[inputs output] test-cases]
-        (is (= (apply encode inputs) output))))))
+        (is (= (apply encode inputs) output))
+        (is (= (encode (apply str inputs)) output))))))
 
 (deftest split-structure-digits-test
   (testing "destination"
