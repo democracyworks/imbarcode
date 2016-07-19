@@ -68,7 +68,7 @@
                  routing))))
   ([barcode service customer-number routing]
      {:pre [(every? string? [barcode service customer-number routing])
-            (= (count barcode) 2)
+            (not (nil? (re-find #"^\d[0-4]$" barcode)))
             (= (count service) 3)
             (= (count customer-number) 15)
             (#{0 5 9 11} (count routing))]}
@@ -76,7 +76,7 @@
       (binary-encode barcode service customer-number routing)))
   ([barcode service mailer serial-number routing]
      {:pre [(every? string? [barcode service mailer serial-number routing])
-            (= (count barcode) 2)
+            (not (nil? (re-find #"^\d[0-4]$" barcode)))
             (= (count service) 3)
             (or (and (= (count mailer) 6)
                      (= (count serial-number) 9))
