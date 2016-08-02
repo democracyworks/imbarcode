@@ -1,5 +1,7 @@
 (ns turbovote.imbarcode-test
-  #+clj (:require [clojure.test :refer :all]
+  #+clj (:require [clojure.data.csv :as csv]
+                  [clojure.java.io :as io]
+                  [clojure.test :refer :all]
                   [turbovote.imbarcode :refer :all])
   #+cljs (:require [cemerick.cljs.test :as t]
                    [turbovote.imbarcode :refer [encode barcode-id:default
@@ -31,7 +33,21 @@
            "FAADADDDTAFTAFDFFTDAADADTAFTTDATAAFTAFTTFAATAAFTFATDTFATFFTATTAAF"}]
       (doseq [[inputs output] test-cases]
         (is (= (apply encode inputs) output))
-        (is (= (encode (apply str inputs)) output))))))
+        (is (= (encode (apply str inputs)) output)))))
+  #+clj
+  (testing "USPS IMb encoder reference test"
+    (with-open [rdr (io/reader (io/resource "imb-reference/usps-imb-encoder-test-cases.csv"))]
+      (doseq [[n tracking routing bar ret msg] (csv/read-csv rdr)]
+        (testing (str "case " n)
+          ; Break up reference tracking number, if it exists
+          (let [[_ bid stid cust] (re-matches #"(.{0,2})(.{0,3})(.*)" (str tracking))]
+            ; "00" in the reference data should succeed, anything else fails
+            (if (= "00" ret)
+              (is (= bar (encode bid stid cust routing)) msg)
+              (is (try
+                    (nil? (encode bid stid cust routing))
+                    (catch AssertionError _ true))
+                  msg))))))))
 
 (deftest split-structure-digits-test
   (testing "destination"

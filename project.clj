@@ -8,6 +8,8 @@
   :plugins [[lein-cljsbuild "1.0.1"]
             [com.keminglabs/cljx "0.3.2"]
             [com.cemerick/clojurescript.test "0.2.1"]]
+  :profiles {:test {:dependencies [[org.clojure/data.csv "0.1.3"]]
+                    :resource-paths ["test-resources"]}}
   :source-paths ["src/clj" "src/cljs"]
   :cljsbuild {
               :crossovers [turbovote.imbarcode]
