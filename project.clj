@@ -43,5 +43,6 @@
                    :output-path "target/generated/test/cljs"
                    :rules :cljs}]}
   :test-paths ["target/generated/test/clj"]
-  :aliases {"cleantest" ["do" "clean," "test," "cljsbuild" "test"]})
   :prep-tasks [["cljx" "once"] "javac" "compile"]
+  :aliases {"cleantest" ["do" "clean," "test," "cljsbuild" "test"]}
+  :deploy-repositories [["releases" :clojars]])
