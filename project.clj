@@ -3,11 +3,11 @@
   :url "https://github.com/turbovote/imbarcode"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.clojure/clojurescript "0.0-2138"]]
-  :plugins [[lein-cljsbuild "1.0.1"]
-            [com.keminglabs/cljx "0.3.2"]
-            [com.cemerick/clojurescript.test "0.2.1"]]
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [org.clojure/clojurescript "1.9.89"]]
+  :plugins [[lein-cljsbuild "1.1.3"]
+            [com.keminglabs/cljx "0.6.0"]
+            [com.cemerick/clojurescript.test "0.3.3"]]
   :profiles {:test {:dependencies [[org.clojure/data.csv "0.1.3"]]
                     :resource-paths ["test-resources"]}}
   :source-paths ["src/clj" "src/cljs"]
@@ -43,5 +43,5 @@
                    :output-path "target/generated/test/cljs"
                    :rules :cljs}]}
   :test-paths ["target/generated/test/clj"]
-  :hooks [cljx.hooks]
   :aliases {"cleantest" ["do" "clean," "test," "cljsbuild" "test"]})
+  :prep-tasks [["cljx" "once"] "javac" "compile"]
