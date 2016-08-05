@@ -31,7 +31,9 @@
                         :compiler {:output-to "target/cljs/testable.js"
                                    :output-dir "target/cljs/"
                                    :optimizations :whitespace
-                                   :pretty-print true}}]
-              :test-commands {"unit-tests" ["phantomjs" "target/cljs/testable.js"]}}
-  :aliases {"cleantest" ["do" "clean," "test," "cljsbuild" "test"]}
+                                   :pretty-print true
+                                   :main turbovote.imbarcode.test-runner}}]}
+  :aliases {"test" ["do" "test," "cljs-test"]
+            "clj-test" ["with-profile" "+without-aliases" "test"]
+            "cljs-test" ["doo" "phantom" "test" "once"]}
   :deploy-repositories [["releases" :clojars]])
