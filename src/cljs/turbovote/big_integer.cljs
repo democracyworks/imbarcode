@@ -2,32 +2,32 @@
   "Wraps goog.math.Integer operations to provide
    a common, Clojure-esque interface for dealing with arbitrary
    precision integers in ClojureScript."
-  (:import goog.math.Integer)
-  (:refer-clojure :exclude [+ * inc quot rem int zero?]))
+  (:refer-clojure :exclude [+ * inc quot rem int zero?])
+  (:import [goog.math Integer]))
 
 (defn valid-string? [string]
   (re-matches #"^\d*$" string))
 
-(def from-string goog.math.Integer/fromString)
+(def from-string Integer.fromString)
 
 (defn ->goog-big-int [x]
   (cond
-   (= (type x) js/Number) (goog.math.Integer/fromNumber x)
-   (= (type x) js/String) (goog.math.Integer/fromString x)
-   (= (type x) goog.math.Integer) x))
+   (= (type x) js/Number) (Integer.fromNumber x)
+   (= (type x) js/String) (Integer.fromString x)
+   (= (type x) Integer) x))
 
 (defn + [& args]
-  (reduce (fn [a b] (.add a b)) goog.math.Integer.ZERO
+  (reduce (fn [a b] (.add a b)) Integer.ZERO
           (map ->goog-big-int args)))
 
 (defn * [& args]
-  (reduce (fn [a b] (.multiply a b)) goog.math.Integer.ONE
+  (reduce (fn [a b] (.multiply a b)) Integer.ONE
           (map ->goog-big-int args)))
 
 (defn inc [x]
   (-> x
       ->goog-big-int
-      (.add goog.math.Integer.ONE)))
+      (.add Integer.ONE)))
 
 (defn quot [x y]
   (.divide (->goog-big-int x)

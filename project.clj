@@ -6,43 +6,32 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.89"]]
   :plugins [[lein-cljsbuild "1.1.3"]
-            [com.keminglabs/cljx "0.6.0"]
-            [com.cemerick/clojurescript.test "0.3.3"]]
-  :profiles {:test {:dependencies [[org.clojure/data.csv "0.1.3"]]
-                    :resource-paths ["test-resources"]}}
-  :source-paths ["src/clj" "src/cljs"]
-  :cljsbuild {
-              :crossovers [turbovote.imbarcode]
-              :crossover-path "src/crossover"
-              :builds [{:id "dev"
-                        :source-paths ["src/cljs" "src/crossover"]
+            [lein-doo "0.1.7"]]
+  :profiles {:dev {:dependencies [[doo "0.1.7"]
+                                  [org.clojure/data.csv "0.1.3"]]}
+             :test {:resource-paths ["test-resources"]}
+             ; Needed for the alias `clj-test`
+             :without-aliases {:aliases ^:replace {}}}
+  :source-paths ["src/cljc" "src/clj"]
+  :test-paths ["test/cljc"]
+  :cljsbuild {:builds [{:id "dev"
+                        :source-paths ["src/cljs" "src/cljc"]
                         :compiler {:output-to "resources/public/javascript/main-dev.js"
                                    :output-dir "resources/public/javascript/dev/"
                                    :optimizations :none
                                    :pretty-print true
                                    :source-map true}}
                        {:id "prod"
-                        :source-paths ["src/cljs" "src/crossover"]
+                        :source-paths ["src/cljs" "src/cljc"]
                         :compiler {:output-to "resources/public/javascript/main.js"
                                    :output-dir "resources/public/javascript/prod/"
                                    :optimizations :advanced}}
                        {:id "test"
-                        :source-paths ["src/cljs"
-                                       "src/crossover"
-                                       "target/generated/test/cljs"]
+                        :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc"]
                         :compiler {:output-to "target/cljs/testable.js"
                                    :output-dir "target/cljs/"
                                    :optimizations :whitespace
                                    :pretty-print true}}]
-              :test-commands {"unit-tests" ["phantomjs" :runner
-                                            "target/cljs/testable.js"]}}
-  :cljx {:builds [{:source-paths ["test/cljx"]
-                   :output-path "target/generated/test/clj"
-                   :rules :clj}
-                  {:source-paths ["test/cljx"]
-                   :output-path "target/generated/test/cljs"
-                   :rules :cljs}]}
-  :test-paths ["target/generated/test/clj"]
-  :prep-tasks [["cljx" "once"] "javac" "compile"]
+              :test-commands {"unit-tests" ["phantomjs" "target/cljs/testable.js"]}}
   :aliases {"cleantest" ["do" "clean," "test," "cljsbuild" "test"]}
   :deploy-repositories [["releases" :clojars]])
