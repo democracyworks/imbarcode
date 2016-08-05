@@ -50,20 +50,23 @@ of usage in ClojureScript
 
 ## Development
 
-To run all the tests (Clojure and ClojureScript) on a clean build:
+To run all the tests (Clojure and ClojureScript):
 
-    $ lein cleantest
+```shell
+lein test
+```
 
 To run just the Clojure tests:
 
-    $ lein test
+```shell
+lein clj-test
+```
 
 To run just the ClojureScript tests:
 
-    $ lein cljsbuild test
-
-Note that we make use of cljx so you may need to manually run `lein cljx` before
-running just the ClojureScript tests.
+```shell
+lein cljs-test
+```
 
 ## License
 
