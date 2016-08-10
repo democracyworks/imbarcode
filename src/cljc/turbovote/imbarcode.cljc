@@ -50,38 +50,38 @@
    section 3.1.3 of the IMb spec for a detailed description of the
    parameters."
   ([structure-digits]
-     {:pre [(string? structure-digits)
-            (not (nil? (re-find #"^\d*$" structure-digits)))
-            (<= 20 (count structure-digits))
-            (>= 31 (count structure-digits))]}
-     (let [{:keys [barcode service routing] :as imb-data}
-            (split-structure-digits structure-digits)]
-       (if (contains? origin-service-types service)
-         (encode barcode
-                 service
-                 (:customer-number imb-data)
-                 routing)
-         (encode barcode
-                 service
-                 (get-in imb-data [:6-digit-mailer :mailer-id])
-                 (get-in imb-data [:6-digit-mailer :serial-number])
-                 routing))))
+   {:pre [(string? structure-digits)
+          (not (nil? (re-find #"^\d*$" structure-digits)))
+          (<= 20 (count structure-digits))
+          (>= 31 (count structure-digits))]}
+   (let [{:keys [barcode service routing] :as imb-data}
+         (split-structure-digits structure-digits)]
+     (if (contains? origin-service-types service)
+       (encode barcode
+               service
+               (:customer-number imb-data)
+               routing)
+       (encode barcode
+               service
+               (get-in imb-data [:6-digit-mailer :mailer-id])
+               (get-in imb-data [:6-digit-mailer :serial-number])
+               routing))))
   ([barcode service customer-number routing]
-     {:pre [(every? string? [barcode service customer-number routing])
-            (not (nil? (re-find #"^\d[0-4]$" barcode)))
-            (= (count service) 3)
-            (= (count customer-number) 15)
-            (#{0 5 9 11} (count routing))]}
-     (encode-binary-data
-      (binary-encode barcode service customer-number routing)))
+   {:pre [(every? string? [barcode service customer-number routing])
+          (not (nil? (re-find #"^\d[0-4]$" barcode)))
+          (= (count service) 3)
+          (= (count customer-number) 15)
+          (#{0 5 9 11} (count routing))]}
+   (encode-binary-data
+    (binary-encode barcode service customer-number routing)))
   ([barcode service mailer serial-number routing]
-     {:pre [(every? string? [barcode service mailer serial-number routing])
-            (not (nil? (re-find #"^\d[0-4]$" barcode)))
-            (= (count service) 3)
-            (or (and (= (count mailer) 6)
-                     (= (count serial-number) 9))
-                (and (= (count mailer) 9)
-                     (= (count serial-number) 6)))
-            (#{0 5 9 11} (count routing))]}
-     (encode-binary-data
-      (binary-encode barcode service mailer serial-number routing))))
+   {:pre [(every? string? [barcode service mailer serial-number routing])
+          (not (nil? (re-find #"^\d[0-4]$" barcode)))
+          (= (count service) 3)
+          (or (and (= (count mailer) 6)
+                   (= (count serial-number) 9))
+              (and (= (count mailer) 9)
+                   (= (count serial-number) 6)))
+          (#{0 5 9 11} (count routing))]}
+   (encode-binary-data
+    (binary-encode barcode service mailer serial-number routing))))
