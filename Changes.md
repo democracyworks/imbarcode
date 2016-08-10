@@ -8,4 +8,4 @@
 
 ## Changes prior to 0.1.6
 
-Changes.md was added at version 1.0.0 so ¯\_(ツ)_/¯
+Changes.md was added at version 1.0.0 so ¯\\\_(ツ)_/¯
