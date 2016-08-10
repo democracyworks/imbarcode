@@ -1,4 +1,4 @@
-(ns turbovote.big-integer
+(ns imbarcode.big-integer
   "Wraps goog.math.Integer operations to provide
    a common, Clojure-esque interface for dealing with arbitrary
    precision integers in ClojureScript."

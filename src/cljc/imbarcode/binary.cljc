@@ -1,7 +1,7 @@
-(ns turbovote.imbarcode.binary
+(ns imbarcode.binary
   "Handles conversion of data fields into binary data.
    See section 3.2.1 of the IMb spec."
-  (:require [turbovote.big-integer :as bi]))
+  (:require [imbarcode.big-integer :as bi]))
 
 (defn str->ints [string]
   {:pre [(bi/valid-string? string)]}
@@ -34,8 +34,8 @@
 
 (defn binary-encode
   ([barcode service customer-number routing]
-     (binary-encode-collapsed-fields (str barcode service customer-number)
-                                     routing))
+   (binary-encode-collapsed-fields (str barcode service customer-number)
+                                   routing))
   ([barcode service mailer serial-number routing]
-     (binary-encode-collapsed-fields (str barcode service mailer serial-number)
-                                     routing)))
+   (binary-encode-collapsed-fields (str barcode service mailer serial-number)
+                                   routing)))

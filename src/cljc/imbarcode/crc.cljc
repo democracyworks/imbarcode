@@ -1,8 +1,8 @@
-(ns turbovote.imbarcode.crc
+(ns imbarcode.crc
   "Handles generation of 11 bit CRC on binary data.
    See section 3.2.2 of the IMb spec."
   (:require [clojure.string :as s]
-            [turbovote.big-integer :as bi]))
+            [imbarcode.big-integer :as bi]))
 
 (defn pad [data n]
   (concat data (repeat n 0)))

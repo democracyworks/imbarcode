@@ -1,9 +1,9 @@
-(ns turbovote.imbarcode-test
-  (:require [turbovote.imbarcode :refer [encode
-                                         barcode-id:default
-                                         service-type-id:origin
-                                         split-structure-digits
-                                         origin-service-types]]
+(ns imbarcode.core-test
+  (:require [imbarcode.core :refer [encode
+                                    barcode-id:default
+                                    service-type-id:origin
+                                    split-structure-digits
+                                    origin-service-types]]
     #?@(:clj  [[clojure.data.csv :as csv]
                [clojure.java.io :as io]
                [clojure.test :refer [is deftest testing]]]

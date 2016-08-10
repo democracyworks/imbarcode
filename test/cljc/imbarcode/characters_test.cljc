@@ -1,6 +1,6 @@
-(ns turbovote.imbarcode.characters-test
-  (:require [turbovote.imbarcode.characters :refer [codewords->characters-base
-                                                    adjust-characters]]
+(ns imbarcode.characters-test
+  (:require [imbarcode.characters :refer [codewords->characters-base
+                                          adjust-characters]]
     #?@(:clj  [[clojure.test :refer [is deftest]]]
         :cljs [[cljs.test :refer-macros [is deftest]]])))
 

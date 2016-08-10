@@ -1,4 +1,4 @@
-(ns turbovote.imbarcode.character-conversion
+(ns imbarcode.character-conversion
   "Mapping from codewords to characters.
    See Tables I and II in Appendix E in the IMb spec.")
 

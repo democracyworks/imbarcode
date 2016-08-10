@@ -1,5 +1,5 @@
-(ns turbovote.imbarcode.bars-test
-  (:require [turbovote.imbarcode.bars :refer [bars]]
+(ns imbarcode.bars-test
+  (:require [imbarcode.bars :refer [bars]]
     #?@(:clj  [[clojure.test :refer [is deftest]]]
         :cljs [[cljs.test :refer-macros [is deftest]]])))
 

@@ -1,7 +1,7 @@
-(ns turbovote.imbarcode.codewords
+(ns imbarcode.codewords
   "Handles conversion from binary data to codewords.
    See section 3.2.3 and 3.2.4 of the IMb spec."
-  (:require [turbovote.big-integer :as bi]))
+  (:require [imbarcode.big-integer :as bi]))
 
 (defn data->codewords-base [data]
   (let [codeword-map {:J (bi/int (bi/rem data 636))}]

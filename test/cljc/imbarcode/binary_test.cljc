@@ -1,6 +1,6 @@
-(ns turbovote.imbarcode.binary-test
-  (:require [turbovote.imbarcode.binary :refer [binary-encode]]
-            [turbovote.big-integer :as bi]
+(ns imbarcode.binary-test
+  (:require [imbarcode.binary :refer [binary-encode]]
+            [imbarcode.big-integer :as bi]
     #?@(:clj  [[clojure.test :refer [is deftest]]]
         :cljs [[cljs.test :refer-macros [is deftest]]])))
 

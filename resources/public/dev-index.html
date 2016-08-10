@@ -1,9 +1,9 @@
 <html>
   <script src="javascript/dev/goog/base.js"></script>
   <script src="javascript/main-dev.js"></script>
-  <script>goog.require('turbovote.imbarcode');</script>
+  <script>goog.require('imbarcode.core');</script>
 
   <script>
-    alert(turbovote.imbarcode.encode("00", "040", "123456", "123456789", "12345"));
+    alert(imbarcode.core.encode("00", "040", "123456", "123456789", "12345"));
   </script>
 </html>

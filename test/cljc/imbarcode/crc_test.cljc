@@ -1,6 +1,6 @@
-(ns turbovote.imbarcode.crc-test
-  (:require [turbovote.imbarcode.crc :refer [IMb-fcs]]
-            [turbovote.big-integer :as bi]
+(ns imbarcode.crc-test
+  (:require [imbarcode.crc :refer [IMb-fcs]]
+            [imbarcode.big-integer :as bi]
     #?@(:clj  [[clojure.test :refer [is deftest]]]
         :cljs [[cljs.test :refer-macros [is deftest]]])))
 

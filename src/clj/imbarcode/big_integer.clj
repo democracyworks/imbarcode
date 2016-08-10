@@ -1,4 +1,4 @@
-(ns turbovote.big-integer
+(ns imbarcode.big-integer
   "Wraps clojure.lang.BigInt to provide a common interface
    for interop with javascript."
   (:refer-clojure :exclude [+ * inc quot rem int zero?]))

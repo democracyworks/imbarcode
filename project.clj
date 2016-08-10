@@ -1,6 +1,6 @@
-(defproject turbovote.imbarcode "0.1.7-SNAPSHOT"
+(defproject democracyworks/imbarcode "1.0.0-SNAPSHOT"
   :description "Generate USPS Intelligent Mail Barcodes"
-  :url "https://github.com/turbovote/imbarcode"
+  :url "https://github.com/democracyworks/imbarcode"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
@@ -32,7 +32,7 @@
                                    :output-dir "target/cljs/"
                                    :optimizations :whitespace
                                    :pretty-print true
-                                   :main turbovote.imbarcode.test-runner}}]}
+                                   :main imbarcode.test-runner}}]}
   :aliases {"test" ["do" "test," "cljs-test"]
             "clj-test" ["with-profile" "+without-aliases" "test"]
             "cljs-test" ["doo" "phantom" "test" "once"]}

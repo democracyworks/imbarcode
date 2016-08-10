@@ -1,7 +1,7 @@
-(ns turbovote.imbarcode.codewords-test
-  (:require [turbovote.imbarcode.codewords :refer [data->codewords-base
-                                                   data->codewords]]
-            [turbovote.big-integer :as bi]
+(ns imbarcode.codewords-test
+  (:require [imbarcode.codewords :refer [data->codewords-base
+                                         data->codewords]]
+            [imbarcode.big-integer :as bi]
     #?@(:clj  [[clojure.test :refer [is deftest]]]
         :cljs [[cljs.test :refer-macros [is deftest]]])))
 

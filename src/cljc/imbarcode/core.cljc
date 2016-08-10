@@ -1,10 +1,10 @@
-(ns turbovote.imbarcode
+(ns imbarcode.core
   "Top-level encoding functionality for generating IMbarcodes."
-  (:require [turbovote.imbarcode.binary :refer [binary-encode]]
-            [turbovote.imbarcode.codewords :refer [data->codewords]]
-            [turbovote.imbarcode.crc :refer [IMb-fcs]]
-            [turbovote.imbarcode.characters :refer [codewords->characters]]
-            [turbovote.imbarcode.bars :refer [bars]]))
+  (:require [imbarcode.binary :refer [binary-encode]]
+            [imbarcode.codewords :refer [data->codewords]]
+            [imbarcode.crc :refer [IMb-fcs]]
+            [imbarcode.characters :refer [codewords->characters]]
+            [imbarcode.bars :refer [bars]]))
 
 (defn- encode-binary-data [binary-data]
   (let [fcs (IMb-fcs binary-data)]

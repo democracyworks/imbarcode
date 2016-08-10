@@ -1,7 +1,7 @@
-# turbovote.imbarcode
+# imbarcode
 
 A Clojure/ClojureScript library designed to generate USPS Intelligent Mail Barcodes.
-The core functionality is in turbovote.imbarcode/encode. Given the necessary parameters,
+The core functionality is in imbarcode.core/encode. Given the necessary parameters,
 this will output a string representing the extenders in the computed barcode.
 
 See https://ribbs.usps.gov/onecodesolution for a complete specification
@@ -12,27 +12,27 @@ and other useful resources.
 ## Installation
 
 `imbarcode` is available as a Maven artifact from
-[Clojars](http://clojars.org/turbovote.imbarcode):
+[Clojars](http://clojars.org/democracyworks/imbarcode):
 ```clojure
-[turbovote.imbarcode "0.1.2"]
+[democracyworks/imbarcode "1.0.0"]
 ```
 
 ## Usage
 
 The top-level encoding functionality is provided in the
-`turbovote.imbarcode` namespace.
+`imbarcode.core` namespace.
 
 Require it in the REPL:
 
 ```clojure
-(require '[turbovote.imbarcode :as imb])
+(require '[imbarcode.core :as imb])
 ```
 
 Require it in your application:
 
 ```clojure
 (ns my-app.core
-  (:require [turbovote.imbarcode :as imb]))
+  (:require [imbarcode.core :as imb]))
 ```
 
 ```clojure
@@ -70,6 +70,6 @@ lein cljs-test
 
 ## License
 
-Copyright (C) 2014 Democracy Works
+Copyright (C) 2014-2016 Democracy Works, Inc.
 
 Distributed under the Eclipse Public License, the same as Clojure.
