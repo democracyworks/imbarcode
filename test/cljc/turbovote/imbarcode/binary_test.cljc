@@ -1,12 +1,8 @@
 (ns turbovote.imbarcode.binary-test
-  #+clj (:require [clojure.test :refer :all]
-                  [turbovote.imbarcode.binary :refer :all]
-                  [turbovote.big-integer :as bi])
-  #+cljs (:require [cemerick.cljs.test :as t]
-                   [turbovote.imbarcode.binary :refer [binary-encode]]
-                   [turbovote.big-integer :as bi])
-  #+cljs (:require-macros [cemerick.cljs.test
-                           :refer (is deftest with-test run-tests testing test-var)]))
+  (:require [turbovote.imbarcode.binary :refer [binary-encode]]
+            [turbovote.big-integer :as bi]
+    #?@(:clj  [[clojure.test :refer [is deftest]]]
+        :cljs [[cljs.test :refer-macros [is deftest]]])))
 
 (deftest example-binary-encoding-test
   (let [test-cases
@@ -20,5 +16,5 @@
          (bi/from-string "16907b2a24abc16a2e5c004b1" 16)}]
     (doseq [[inputs output] test-cases]
       (let [actual (apply binary-encode inputs)]
-        (is #+clj (= actual output)
-            #+cljs (.equals actual output))))))
+        (is #?(:clj (= actual output)
+               :cljs (.equals actual output)))))))

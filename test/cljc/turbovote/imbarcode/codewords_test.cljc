@@ -1,13 +1,9 @@
 (ns turbovote.imbarcode.codewords-test
-  #+clj (:require [clojure.test :refer :all]
-                  [turbovote.imbarcode.codewords :refer :all]
-                  [turbovote.big-integer :as bi])
-  #+cljs (:require [cemerick.cljs.test :as t]
-                   [turbovote.imbarcode.codewords :refer [data->codewords-base
-                                                          data->codewords]]
-                   [turbovote.big-integer :as bi])
-  #+cljs (:require-macros [cemerick.cljs.test
-                           :refer (is deftest with-test run-tests testing test-var)]))
+  (:require [turbovote.imbarcode.codewords :refer [data->codewords-base
+                                                   data->codewords]]
+            [turbovote.big-integer :as bi]
+    #?@(:clj  [[clojure.test :refer [is deftest]]]
+        :cljs [[cljs.test :refer-macros [is deftest]]])))
 
 (deftest data->codewords-base-test
   (let [test-cases
