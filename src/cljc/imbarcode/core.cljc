@@ -38,6 +38,40 @@
           :9-digit-mailer {:mailer-id (subs mailer-and-serial 0 9)
                            :serial-number (subs mailer-and-serial 9)})))))
 
+(defn ^:export encodable?
+  "Returns true if `structure-digits` (or the other breakdown arities)
+  are encodable as an IMbarcode or false otherwise."
+  ([structure-digits]
+   (boolean
+    (and (string? structure-digits)
+         (not (nil? (re-find #"^\d*$" structure-digits)))
+         (<= 20 (count structure-digits))
+         (>= 31 (count structure-digits))
+         (let [{:keys [barcode service routing customer-number]
+                mailer :6-digit-mailer}
+               (split-structure-digits structure-digits)]
+           (if customer-number
+             (encodable? barcode service customer-number routing)
+             (encodable? barcode service (:mailer-id mailer)
+                         (:serial-number mailer) routing))))))
+  ([barcode service customer-number routing]
+   (boolean
+    (and (every? string? [barcode service customer-number routing])
+         (not (nil? (re-find #"^\d[0-4]$" barcode)))
+         (= (count service) 3)
+         (= (count customer-number) 15)
+         (#{0 5 9 11} (count routing)))))
+  ([barcode service mailer serial-number routing]
+   (boolean
+    (and (every? string? [barcode service mailer serial-number routing])
+         (not (nil? (re-find #"^\d[0-4]$" barcode)))
+         (= (count service) 3)
+         (or (and (= (count mailer) 6)
+                  (= (count serial-number) 9))
+             (and (= (count mailer) 9)
+                  (= (count serial-number) 6)))
+         (#{0 5 9 11} (count routing))))))
+
 (defn ^:export encode
   "Generate the texual representation of an encoded USPS IMbarcode
    from the data provided. You can pass in the full numerical
@@ -50,10 +84,7 @@
    section 3.1.3 of the IMb spec for a detailed description of the
    parameters."
   ([structure-digits]
-   {:pre [(string? structure-digits)
-          (not (nil? (re-find #"^\d*$" structure-digits)))
-          (<= 20 (count structure-digits))
-          (>= 31 (count structure-digits))]}
+   {:pre [(encodable? structure-digits)]}
    (let [{:keys [barcode service routing] :as imb-data}
          (split-structure-digits structure-digits)]
      (if (contains? origin-service-types service)
@@ -67,21 +98,10 @@
                (get-in imb-data [:6-digit-mailer :serial-number])
                routing))))
   ([barcode service customer-number routing]
-   {:pre [(every? string? [barcode service customer-number routing])
-          (not (nil? (re-find #"^\d[0-4]$" barcode)))
-          (= (count service) 3)
-          (= (count customer-number) 15)
-          (#{0 5 9 11} (count routing))]}
+   {:pre [(encodable? barcode service customer-number routing)]}
    (encode-binary-data
     (binary-encode barcode service customer-number routing)))
   ([barcode service mailer serial-number routing]
-   {:pre [(every? string? [barcode service mailer serial-number routing])
-          (not (nil? (re-find #"^\d[0-4]$" barcode)))
-          (= (count service) 3)
-          (or (and (= (count mailer) 6)
-                   (= (count serial-number) 9))
-              (and (= (count mailer) 9)
-                   (= (count serial-number) 6)))
-          (#{0 5 9 11} (count routing))]}
+   {:pre [(encodable? barcode service mailer serial-number routing)]}
    (encode-binary-data
     (binary-encode barcode service mailer serial-number routing))))

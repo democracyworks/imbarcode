@@ -1,5 +1,6 @@
 (ns imbarcode.core-test
   (:require [imbarcode.core :refer [encode
+                                    encodable?
                                     barcode-id:default
                                     service-type-id:origin
                                     split-structure-digits
@@ -76,6 +77,8 @@
 
 (defspec encode-spec 1000
   (prop/for-all [structure-digits gen-structure-digits]
+    (and
+     (encodable? structure-digits)
      (let [encoded (encode structure-digits)]
        (and encoded
             (every? #{\A \D \F \T} encoded))))))
