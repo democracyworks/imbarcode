@@ -33,7 +33,6 @@
             :else
             (recur (xor result poly-div))))))
 
-
 (defn IMb-fcs
   "Returns the 11 bit IMb frame check sequence
    represented as a vector of 0s and 1s.

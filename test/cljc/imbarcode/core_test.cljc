@@ -4,10 +4,16 @@
                                     service-type-id:origin
                                     split-structure-digits
                                     origin-service-types]]
+            [clojure.test.check]
+            [clojure.test.check.generators :as gen]
     #?@(:clj  [[clojure.data.csv :as csv]
                [clojure.java.io :as io]
-               [clojure.test :refer [is deftest testing]]]
-        :cljs [[cljs.test :refer-macros [is deftest testing]]])))
+               [clojure.test :refer [is deftest testing]]
+               [clojure.test.check.properties :as prop]
+               [clojure.test.check.clojure-test :refer [defspec]]]
+        :cljs [[cljs.test :refer-macros [is deftest testing]]
+               [clojure.test.check.properties :as prop :include-macros true]
+               [clojure.test.check.clojure-test :refer-macros [defspec]]])))
 
 (deftest encode-test
   (testing "destination"
@@ -46,6 +52,33 @@
                         (nil? (encode bid stid cust routing))
                         (catch AssertionError _ true))
                       msg)))))))))
+
+(def routing-code
+  (gen/fmap #(apply str %)
+            (gen/one-of
+             [(gen/return [])
+              (gen/vector (gen/choose 0 9) 5)
+              (gen/vector (gen/choose 0 9) 9)
+              (gen/vector (gen/choose 0 9) 11)])))
+
+(def barcode
+  (gen/fmap #(apply str %)
+            (gen/tuple (gen/choose 0 9)
+                       (gen/choose 0 4))))
+
+(def gen-structure-digits
+  (gen/fmap (fn [[bc base routing]]
+              (str bc base routing))
+   (gen/tuple barcode
+              (gen/fmap #(apply str %)
+                        (gen/vector (gen/choose 0 9) 18))
+              routing-code)))
+
+(defspec encode-spec 1000
+  (prop/for-all [structure-digits gen-structure-digits]
+     (let [encoded (encode structure-digits)]
+       (and encoded
+            (every? #{\A \D \F \T} encoded))))))
 
 (deftest split-structure-digits-test
   (testing "destination"
