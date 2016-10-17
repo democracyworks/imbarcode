@@ -69,10 +69,10 @@
 
 (def gen-structure-digits
   (gen/fmap #(apply str %)
-   (gen/tuple barcode
-              (gen/fmap #(apply str %)
-                        (gen/vector (gen/choose 0 9) 18))
-              routing-code)))
+            (gen/tuple barcode
+                       (gen/fmap #(apply str %)
+                                 (gen/vector (gen/choose 0 9) 18))
+                       routing-code)))
 
 (defspec encode-spec 1000
   (prop/for-all [structure-digits gen-structure-digits]
