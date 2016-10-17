@@ -68,8 +68,7 @@
                        (gen/choose 0 4))))
 
 (def gen-structure-digits
-  (gen/fmap (fn [[bc base routing]]
-              (str bc base routing))
+  (gen/fmap #(apply str %)
    (gen/tuple barcode
               (gen/fmap #(apply str %)
                         (gen/vector (gen/choose 0 9) 18))
