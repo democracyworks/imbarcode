@@ -76,11 +76,9 @@
 
 (defspec encode-spec 1000
   (prop/for-all [structure-digits gen-structure-digits]
-    (and
-     (encodable? structure-digits)
-     (let [encoded (encode structure-digits)]
-       (and encoded
-            (every? #{\A \D \F \T} encoded))))))
+    (let [encoded (encode structure-digits)]
+      (and encoded
+           (every? #{\A \D \F \T} encoded)))))
 
 (deftest split-structure-digits-test
   (testing "destination"
