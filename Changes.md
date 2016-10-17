@@ -1,4 +1,4 @@
-## Changes between 1.0.0 and HEAD
+## Changes between 1.0.0 and 1.0.1
 
 * Added a new `imbarcode.core/encodable?` predicate fn that takes all the same
   arguments (including the 3 different arities) as `imbarcode.core/encode` and
