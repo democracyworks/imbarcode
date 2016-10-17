@@ -78,7 +78,8 @@
   (prop/for-all [structure-digits gen-structure-digits]
     (let [encoded (encode structure-digits)]
       (and encoded
-           (every? #{\A \D \F \T} encoded)))))
+           (every? #{\A \D \F \T} encoded)
+           (= 65 (count encoded))))))
 
 (deftest split-structure-digits-test
   (testing "destination"
