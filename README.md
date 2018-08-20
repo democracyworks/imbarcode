@@ -8,14 +8,12 @@ See https://ribbs.usps.gov/onecodesolution for a complete specification
 of USPS Intelligent Mail Barcodes, a font file to properly display your encoded barcode,
 and other useful resources.
 
-
 ## Installation
 
-`imbarcode` is available as a Maven artifact from
-[Clojars](http://clojars.org/democracyworks/imbarcode):
-```clojure
-[democracyworks/imbarcode "1.0.0"]
-```
+The library is available as a Maven artifact from
+[Clojars](https://clojars.org).
+
+[![Latest version badge for democracyworks/imbarcode](https://img.shields.io/clojars/v/democracyworks/imbarcode.svg)](https://clojars.org/democracyworks/imbarcode)
 
 ## Usage
 
