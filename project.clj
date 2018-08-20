@@ -1,4 +1,4 @@
-(defproject democracyworks/imbarcode "1.0.2"
+(defproject democracyworks/imbarcode "1.0.3-SNAPSHOT"
   :description "Generate USPS Intelligent Mail Barcodes"
   :url "https://github.com/democracyworks/imbarcode"
   :license {:name "Eclipse Public License"
