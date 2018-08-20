@@ -1,3 +1,7 @@
+## Changes between 1.0.1 and HEAD
+
+* Added service type IDs for ballot mail origin tracing: `777`, `778`, `779`.
+
 ## Changes between 1.0.0 and 1.0.1
 
 * Added a new `imbarcode.core/encodable?` predicate fn that takes all the same
