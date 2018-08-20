@@ -18,7 +18,11 @@
 (def ^:export service-type-id:destination "040")
 (def ^:export service-type-id:origin "050")
 
-(def origin-service-types #{"050" "051" "052"})
+(def origin-service-types
+  "The service type IDs that allow our system to classify an IMb as
+  partner-bound (aka \"origin tracing\")."
+  #{"050" "051" "052"
+    "777" "778" "779"})
 
 (defn ^:export split-structure-digits
   "Split IMbarcode structure digits into their constituent parts"
